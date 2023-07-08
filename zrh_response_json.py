@@ -1,7 +1,7 @@
 import ujson
 
 
-class ResponseJson:
+class ZrhResponseJson:
     def __init__(self) -> None:
         self._message = None
         self._isSuccess = True
