@@ -1,4 +1,9 @@
 import machine
+import time
+from zrh_led import ZrhLedBoard
+
+
+zrhLedBoard = ZrhLedBoard()
 
 
 class ZrhPirMotionSensor:
@@ -26,18 +31,14 @@ class ZrhPirMotionSensor:
 
 
 def _on_motion(state):
-    # led灯
-    led_pin = machine.Pin(21, machine.Pin.OUT, machine.Pin.PULL_UP)
     if state:
-        print("运动检测回调：检测到运动")
-        led_pin.value(1)
+        print("find")
+        zrhLedBoard.on_led((50, 50, 10))
     else:
-        print("运动检测回调：运动结束")
-        led_pin.value(0)
+        print("stop")
+        zrhLedBoard.off_led()
 
 
-zrhPirMotionSensor = ZrhPirMotionSensor(23)
-zrhPirMotionSensor.listen(_on_motion)
-
-while 1:
-    pass
+def on_start():
+    zrhPirMotionSensor = ZrhPirMotionSensor(23)
+    zrhPirMotionSensor.listen(_on_motion)
