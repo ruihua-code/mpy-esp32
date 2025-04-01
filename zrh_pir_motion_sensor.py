@@ -33,12 +33,12 @@ class ZrhPirMotionSensor:
 def _on_motion(state):
     if state:
         print("find")
-        zrhLedBoard.on_led((50, 50, 10))
+        zrhLedBoard.on_led((150, 150, 50))
     else:
         print("stop")
         zrhLedBoard.off_led()
 
 
 def on_start():
-    zrhPirMotionSensor = ZrhPirMotionSensor(23)
+    zrhPirMotionSensor = ZrhPirMotionSensor(15)
     zrhPirMotionSensor.listen(_on_motion)
